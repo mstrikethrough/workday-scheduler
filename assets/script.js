@@ -94,7 +94,7 @@ var hr5 = document.querySelector(".hr5").textContent;
 hr5 = parseInt(hr5[0]);
 var todo5 = document.querySelector(".todo5");
 
-var currentTime = moment().format();
+var currentTime = moment().hour();
 var hours = [hr9, hr10, hr11, hr12, hr1, hr2, hr3, hr4, hr5];
 var tasks = [todo9, todo10, todo11, todo12, todo1, todo2, todo3, todo4, todo5];
 
@@ -102,12 +102,18 @@ var tasks = [todo9, todo10, todo11, todo12, todo1, todo2, todo3, todo4, todo5];
 function timeColor() {
     for (i = 0; i < hours.length; i ++) {
         if (hours[i] < currentTime) {
+            tasks[i].classList.remove("present");
+            tasks[i].classList.remove("future");
             tasks[i].classList.add("past");
         }
         else if (hours[i] === currentTime) {
+            tasks[i].classList.remove("past");
+            tasks[i].classList.remove("future");
             tasks[i].classList.add("present");
         }
         else {
+            tasks[i].classList.remove("past");
+            tasks[i].classList.remove("present");
             tasks[i].classList.add("future");
         }
     }
